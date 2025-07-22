@@ -1,0 +1,33 @@
+[package]
+edition = "2024"
+name = "embassy-salt-rf"
+version = "0.1.0"
+
+[dependencies]
+# Change stm32f103c8 to your chip name, if necessary.
+embassy-stm32 = { version = "0.2.0", git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "stm32f103cb", "unstable-pac", "memory-x", "time-driver-any", "exti"] }
+embassy-sync = { version = "0.6.2", git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"] }
+embassy-executor = { version = "0.7.0", git = "https://github.com/embassy-rs/embassy.git", features = ["arch-cortex-m", "executor-thread", "defmt"] }
+embassy-time = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy.git", features = ["defmt", "defmt-timestamp-uptime", "tick-hz-32_768"] }
+embassy-usb = { version = "0.4.0", git = "https://github.com/embassy-rs/embassy.git", features = ["defmt"] }
+embassy-futures = { version = "0.1.0", git = "https://github.com/embassy-rs/embassy.git" }
+
+defmt = "1.0.1"
+defmt-rtt = "1.0.0"
+
+cortex-m = { version = "0.7.6", features = ["inline-asm", "critical-section-single-core"] }
+cortex-m-rt = "0.7.0"
+embedded-hal = "1.0.0"
+panic-probe = { version = "0.3", features = ["print-defmt"] }
+heapless = { version = "0.8", default-features = false }
+nb = "1.0.0"
+static_cell = "2.0.0"
+
+serde = { version = "1.0.219", default-features = false, features = ["derive"] }
+postcard = { version = "1.1.1", default-features = false}
+
+[profile.dev]
+opt-level = "s"
+
+[profile.release]
+debug = 2
